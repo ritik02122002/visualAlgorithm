@@ -79,22 +79,19 @@
       background: linear-gradient(45deg, rgb(251, 201, 243), rgb(236, 184, 210) 35%, rgba(237, 138, 189, 0.7) 39%, rgb(240, 171, 205) 60%, rgb(237, 186, 234));
 
     }
-/* 
-     .dropdown:hover .item {
+
+    .dropdown:hover .item {
       font-size: 27px;
-    } */
+    }
 
-    .dropdown-content {
+    .dropdown:hover .dropdown-content {
       display: block;
-    } 
-     /* .dropdown:hover .dropdown-content {
-      display: block;
-    }  */
+    }
 
-     /* .dropdown-content button:hover {
+    .dropdown-content button:hover {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       background-color: rgb(251, 210, 253);
-    }  */
+    }
 
     a,
     a:hover,
@@ -166,38 +163,26 @@ display: block;
     <div class="dropdown">
       <button class="item">SORTING</button>
       <div class="dropdown-content">
-        <select onchange="location.href = this.value;">
-          <option class="item2" value="homepage_visualalgo.html" selected>---SELECT---</option>
-          <option class="item2" value="bubblesort.html">BUBBLE SORT</option>
-        </select> 
+        <button class="item2"><a href="bubblesort.html">BUBBLE SORT</a></button><br />
       </div>
     </div>
     <div class="dropdown">
       <button class="item">SEARCHING</button>
       <div class="dropdown-content">
-        <select onchange="location.href = this.value;">
-          <option class="item2" value="homepage_visualalgo.html" selected>---SELECT---</option>
-        <option class="item2" value="linearsearch.html">LINEAR SEARCH</option>
-        <option class="item2" value="binarysearch.html">BINARY SEARCH</option>
-      </select>
+        <button class="item2"><a href="linearsearch.html">LINEAR SEARCH</a></button>
+        <button class="item2"><a href="binarysearch.html">BINARY SEARCH</a></button>
       </div>
     </div>
     <div class="dropdown">
       <button class="item"><a href="">RECURSIVE</a></button>
       <div class="dropdown-content">
-        <select onchange="location.href = this.value;">
-        <option class="item2" value="homepage_visualalgo.html" selected>---SELECT---</option>
-        <option calss="item2" value="toh_html.html">TOWER OF HANOI</option>
-        </select>
+        <button class="item2"><a href="toh_html.html">TOWER OF HANOI</a></button>
       </div>
     </div>
     <div class="dropdown">
       <button class="item">DYNAMIC PROGRAMMING</button>
       <div class="dropdown-content">
-        <select onchange="location.href = this.value;">
-          <option class="item2" value="homepage_visualalgo.html" selected>---SELECT---</option>
-          <option class="item2" value="max square.html">Max size square of all 1's in a grid of 0's and 1's</option>
-        </select>
+        <button class="item2"><a href="max square.html">MAX SIZE SQUARE OF ALL 1's IN A GRID OF 0's AND 1's</a></button>
       </div>
     </div>
 
