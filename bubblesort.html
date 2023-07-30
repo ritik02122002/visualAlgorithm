@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <title>
+        bubble sort
+    </title>
+    <link rel="stylesheet" href="visualizer_css.css">
+    <style>
+        /* h1 {
+            font-style: italic;
+            font-family: Helvetica;
+            color: #8b1ca7;
+            word-spacing: 2px;
+            font-size: 70px;
+            text-align: center;
+            text-shadow: 2px 2px 8px orange;
+            letter-spacing: 2px;
+        } */
+
+        #additionalinfo {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #sorted {
+            margin-right: 50px;
+        }
+
+        #visual {
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="algo_name">BUBBLE SORT</h1>
+    <button class="prblm_st_btn button-6" onclick="showHideProblem()">Description</button>
+    <div class="prblm_st">
+        <p> Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order.</p>
+
+        <h3>Problem Statement:</h3>
+        <p>Given an array <b>"arr"</b> of integers. We have to sort the array <b>"arr"</b> in non-descreasing order using Bubble Sort(Assuming array indexing starts from 0)</p>
+
+        <h3>Pseuodocode:</h3>
+        <code>
+           <p> BubbleSort(Array arr, Size n)</p>
+            <p>Begin</p>
+              <p>for i = 0 to n-2 increment by 1 do  // where, i is for the pass</p>
+                <p>for j = 0 to n – 2 – i increment by 1 do  // this is for comparison</p>
+                  <p>if arr[j] > arr[j+1] then</p>  
+                    <p>swap(arr[j],arr[j+1])</p>
+                  <p>endif</p>
+                <p>endfor</p>
+              <p>endfor</p>
+            <p>End</p>
+        </code>
+
+        <h3>Complexity Analysis:</h3>
+        <h4>Time Complexity:</h4>
+        <p>Best Case:  The best case occurs when the array is already sorted. So the number of comparisons required is n-1 and the number of swaps required = 0. Hence the best case complexity is O(n).</p>
+        <p>Average Case: It occurs when the array elements are in jumbled order that is not properly ascending and not properly descending. The average case time complexity of bubble sort is O(n*n).</p>
+        <p>Worst Case: The worst-case condition for bubble sort occurs when elements of the array are arranged in decreasing order.
+            In the worst case, the total number of iterations or passes required to sort a given array is (n-1). where ‘n’ is the number of elements present in the array.Hence the worst case complexity is O(n*n).</p>
+        <h4>Space Complexity: </h4>
+        <p>O(1) as no additional space is used.</p>
+        <button onclick="showHideProblem()" class="close_btn">Close</button>
+    </div>
+    <div class="box">
+        <div class="array"></div>
+
+        <div class="information"></div>
+
+    </div>
+    <div id="additionalinfo">
+        <div id="swaps" class="button-6">SWAPS : <span id="swapcount">0</span></div>
+        <div id="sorted" class="button-6">UNSORTED</div>
+    </div>
+    <hr color="purple" style="margin:30px 10px;">
+    <div class="cont">
+        <div>
+            <div class="x">
+                <!-- <div class="input">
+                    <div class="select">
+                        <select id="n" onchange="arr_size()">
+                            <option value="3">Array size : 3</option>
+                            <option value="4">Array size : 4</option>
+                            <option value="5">Array size : 5</option>
+                            <option value="6" selected>Array size : 6</option>
+                            <option value="7">Array size : 7</option>
+                            <option value="8">Array size : 8</option>
+                            <option value="9">Array size : 9</option>
+                            <option value="10">Array size : 10</option>
+                            <option value="11">Array size : 11</option>
+                            <option value="12">Array size : 12</option>
+                            <option value="13">Array size : 13</option>
+                            <option value="14">Array size : 14</option>
+                            <option value="15">Array size : 15</option>
+                        </select>
+                    </div>
+                </div> -->
+                
+                <div>
+                    <div class="range">Speed</div><input type="range" min="-2" max="2" id="speed">
+                </div>
+
+            </div>
+            <h3>How you want the array to be?</h3>
+            <div class="x">
+                <button class="arrgen_btn button-6" onclick="updateVal()">Enter manually</button>
+                <button class="arrgen_btn button-6" onclick="generate_random_arr('bubblesort')">Random</button>
+                <button class="arrgen_btn button-6" onclick="generate_sorted_arr('bubblesort')">Random Sorted</button>
+            </div>
+            <div class="x">
+                <button class="button-6" onclick="start_bubblesort()" id="visual">VISUALISE</button>
+            </div>
+        </div>
+        <div id="logs">
+            <h3>Logs:</h3>
+            <div id="logvals">
+
+            </div>
+
+        </div>
+    </div>
+    <script src="visualizer_js.js"> </script>
+    <script>document.getElementById("speed").defaultValue = -2</script>
+</body>
+
+</html>

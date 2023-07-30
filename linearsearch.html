@@ -1,0 +1,121 @@
+<html>
+
+<head>
+    <title>
+        linear search
+    </title>
+    <link rel="stylesheet" href="visualizer_css.css">
+    <style>
+     
+
+        #visual {
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<body>
+    <h1 class="algo_name">LINEAR SEARCH</h1>
+
+    <button class="prblm_st_btn button-6" onclick="showHideProblem()">Description</button>
+    <div class="prblm_st">
+        <p> Linear Search is defined as a sequential search algorithm that starts at one end and goes through each
+            element of an array until the desired element is found, otherwise the search continues till the end of the
+            data set</p>
+
+        <h3>Problem Statement:</h3>
+        <p>Given an array <b>"arr"</b> of integers and an element <b>"key"</b>. We have to search if <b>"key"</b> exists
+            in <b>"arr"</b> or not(Assuming array indexing starts from 0)</p>
+
+        <h3>Pseuodocode:</h3>
+        <code>
+            <p>Linear Search ( Array arr, Element key)</p>
+<p>Step 1: Set i to 1</p>
+<p>Step 2: if i > n then go to step 7</p>
+<p>Step 3: if arr[i] = key then go to step 6</p>
+<p>Step 4: Set i to i + 1</p>
+<p>Step 5: Go to Step 2</p>
+<p>Step 6: Print key Found at index i and go to step 8</p>
+<p>Step 7: Print key not found</p>
+<p>Step 8: Exit</p>
+        </code>
+
+        <h3>Complexity Analysis:</h3>
+        <h4>Time Complexity:</h4>
+        <p>Best Case: In the best case, the key might be present at the index 0. So the best case complexity is O(1)</p>
+        <p>Worst Case: In the worst case, the key might be present at the last index i.e., opposite to the end from
+            which the search has started in the array. So the worst-case complexity is O(N) where N is the size of the
+            array.</p>
+        <p>Average Case: O(N)</p>
+        <h4>Space Complexity: </h4>
+        <p>O(1) as except for the variable to iterate through the array, no other variable is used. </p>
+        <button onclick="showHideProblem()" class="close_btn">Close</button>
+    </div>
+
+    <!-- Linear Search is defined as a sequential search algorithm that starts at one end and goes through each element of a list until the desired element is found, otherwise the search continues till the end of the data set. -->
+    <div class="box">
+        <div class="array"></div>
+
+        <div class="information"></div>
+    </div>
+    <div class="x">
+        <label class="range">Speed</label><input type="range" min="-2" max="2" id="speed">
+    </div>
+    <hr color="purple" style="margin:30px 10px;">
+    <br />
+
+    <div class="cont">
+
+        <div>
+            <div class="x">
+                <div class="input"><label id="key_label">key : </label><input type="number" min="-10000" max="15000"
+                        id="key" placeholder="Enter key" value="0">
+                </div>
+                <!-- <div class="input">
+                    <div class="select">
+                        <select id="n" onchange="arr_size()">
+                            <option value="1">Array size : 1</option>
+                            <option value="2">Array size : 2</option>
+                            <option value="3">Array size : 3</option>
+                            <option value="4">Array size : 4</option>
+                            <option value="5">Array size : 5</option>
+                            <option value="6" selected>Array size : 6</option>
+                            <option value="7">Array size : 7</option>
+                            <option value="8">Array size : 8</option>
+                            <option value="9">Array size : 9</option>
+                            <option value="10">Array size : 10</option>
+                            <option value="11">Array size : 11</option>
+                            <option value="12">Array size : 12</option>
+                            <option value="13">Array size : 13</option>
+                            <option value="14">Array size : 14</option>
+                            <option value="15">Array size : 15</option>
+                        </select>
+                    </div>
+                </div> -->
+            </div>
+            <h3>How you want the array to be?</h3>
+            <div class="x">
+                <button class="arrgen_btn button-6" onclick="updateVal()">Enter manually</button>
+                <button class="arrgen_btn button-6" onclick="generate_random_arr('linearsearch')">Random</button>
+                <!-- <button class="arrgen_btn button-6" onclick="generate_sorted_arr('linearsearch')">Sorted</button> -->
+            </div>
+            <div class="x">
+                <button id="visual" class="button-6" onclick="start_linearsearch()">START VISUALISING</button>
+            </div>
+        </div>
+
+        <div id="logs">
+            <h3>Logs:</h3>
+            <div id="logvals">
+
+            </div>
+
+        </div>
+    </div>
+    <script src="visualizer_js.js"> </script>
+    <script>document.getElementById("speed").defaultValue = -2</script>
+</body>
+
+</html>
