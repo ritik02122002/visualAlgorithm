@@ -1,3 +1,8 @@
+.function_def
+{
+    font-size: larger;
+    font-weight: bold;
+}
 .algo_name {
     font-style: italic;
     font-family: Helvetica;
@@ -31,7 +36,7 @@ translate:  -40% 0%;
 }
 #logvals{
     overflow-y: scroll;
-    height: 250px;
+    height: 200px;
 
 }
 .prblm_st{
@@ -194,8 +199,9 @@ input[type="range"]::-webkit-slider-thumb:after {
 .arrgen_btn {
     font-family: arial;
     color: rgb(80, 7, 82);
-    background: linear-gradient(white, rgb(204, 255, 230));
-    border: 4px double orange;
+    /* background: linear-gradient(white, rgb(204, 255, 230)); */
+      background: linear-gradient(white, rgba(165, 42, 42,0.7));
+    /* border: 4px double orange; */
     letter-spacing: 3px;
     border-radius: 0px;
     font-size: 20px;
@@ -236,7 +242,7 @@ input[type="number"] {
     padding: 5px 10px;
     margin: 10px 20px;
 }
-#key_label{
+#key_label,#row_label,#col_label{
     font-size: 23px;
     color: brown;
     font-weight: bold;
@@ -255,7 +261,7 @@ h1 {
 .information {
     display: flex;
     justify-content: flex-start;
-    width: 700px;
+    width: 1000px;
     height: 50px;
     margin: 0 auto;
     background-color: brown;
@@ -275,6 +281,8 @@ h1 {
 
     height: inherit;
     width: 700;
+    padding-left: 3px;
+    padding-right: 3px;
     font-size: 25px;
     border: 2px solid white;
     text-align: center;
