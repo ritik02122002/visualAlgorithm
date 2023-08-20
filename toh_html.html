@@ -73,7 +73,7 @@
             margin: 2% 0px;
             margin-left: auto;
             margin-right: auto;
-            height: 45%;
+            height: 40%;
             width: 90%;
         }
 
@@ -137,12 +137,56 @@
             margin: 10px;
             height: 70px;
         }
+
+        #speed{
+            display: none;
+        }
+        #moves{
+            white-space: nowrap;
+        }
     </style>
 
 </head>
 
 <body>
     <h1 class="algo_name">TOWER OF HANOI </h1>
+    <button class="prblm_st_btn button-6" onclick="showHideProblem()">Description</button>
+    <div class="prblm_st">
+      
+
+        <h3>Problem Statement:</h3>
+        <p>Tower of Hanoi is a mathematical puzzle where we have <b>three towers (Tower1, Tower2, and Tower3)</b> and <b>N disks</b>. Initially, all the disks are stacked in decreasing value of diameter i.e., the smallest disk is placed on the top and they are on tower1. The objective of the puzzle is to move the entire stack to another tower (here considered tower3), obeying the following simple rules: </p>
+
+        <ul>
+            <li>  Only one disk can be moved at a time.</li>
+           <li>  Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack 
+            i.e. a disk can only be moved if it is the uppermost disk on a stack.</li>
+            <li>   No disk may be placed on top of a smaller disk.</li>
+            </ul>
+
+        <h3>Pseuodocode:</h3>
+        <pre>
+            <span class="function_def">Tower Of Hanoi (Tower tower1, Tower tower3, Tower tower2, Disk N)</span>
+
+               if (N >= 1)
+
+                    // put (N-1) disk from tower1 to tower2 by using tower3
+                    Tower Of Hanoi (tower1, tower2, tower3, N-1)
+               
+                    // move larger disk to right place
+                    move : tower1 --> tower3
+                 
+                    // put (N-1) disk to right place 
+                    Tower Of Hanoi (tower2, tower3, tower1, N-1)
+        </pre>
+
+        <h3>Complexity Analysis:</h3>
+        <h4>Time Complexity:</h4>
+       <p><b>O(2^N)</b>, There are two possibilities for every disk. Therefore, 2 * 2 * 2 * . . . * 2(N times) is 2^N</p>
+        <h4>Space Complexity: </h4>
+        <p><b>O(N)</b>, Function call stack space</p>
+        <button onclick="showHideProblem()" class="close_btn">Close</button>
+    </div>
     <div class="container">
 
         <div class="tower1" title="Tower 1"></div>
@@ -161,7 +205,7 @@
             </div>
             <div class="x">
                 <div class="input">
-                    <h3>Number of blocks:</h3>
+                    <h3>Number of disks:</h3>
                     <select id="numberofblocks" onchange="initialPos()">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -173,14 +217,14 @@
                     </select>
                 </div>
                 <div class="input">
-                    <h3>Speed:</h3>
+                    <!-- <h3>Speed:</h3> -->
                     <input type="range" min="1" max="4" id="speed" onchange="Storespeed()">
                 </div>
             </div>
             <div class="x">
-                <button class="button-6" onclick="visualise_toh(n)">VISUALISE</button>
+                <button class="button-6" onclick="visualise_toh(n)">VISUALIZE</button>
 
-                <button class="button-6" onclick="reset()">RESET</button>
+                <button class="arrgen_btn button-6" onclick="reset()">RESET</button>
             </div>
 
         </div>
@@ -328,7 +372,7 @@
                     // var spane=document.createElement("span");
                     // spane.innerHTML=id;
 
-                    newe.innerHTML = "<b>Move " + (i + 1) + "</b><br>Moving <span style='color:" + colorarr[id - 1] + "'>disc " + id + "</span> from <b>" + from[i] + "</b> to <b>" + to[i] + "</b>";
+                    newe.innerHTML = "<b>Move " + (i + 1) + "</b><br>Moving <b><span style='color:" + colorarr[id - 1] + "'>disc " + id + "</span></b> from <b>" + from[i] + "</b> to <b>" + to[i] + "</b>";
                     ee.appendChild(newe);
                     f(newe);
 
@@ -371,6 +415,24 @@
   initialPos((this).val()); 
    
 });
+function showHideProblem() {
+
+
+var x = document.getElementsByClassName("prblm_st")[0].style.display;
+if (x == "block") {
+    document.getElementsByClassName("prblm_st")[0].style.display = "none";
+
+}
+else {
+
+    // document.getElementsByTagName("body")[0].style.filter="blur(2px)";
+    //     document.querySelectorAll("body :not(.prblm_st)")
+    //   .forEach(element => element.style.filter = "blur(2px)");
+    document.getElementsByClassName("prblm_st")[0].style.display = "block";
+}
+console.log(x);
+
+}
     </script>
     <!-- <script src="visualizer_js.js"> </script> -->
 </body>
