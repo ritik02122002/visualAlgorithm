@@ -42,29 +42,33 @@
         <p> Binary Search is a searching algorithm for finding an element's position in a sorted array by repeatedly dividing the search interval in half.</p>
 
         <h3>Problem Statement:</h3>
-        <p>Given a sorted array <b>"arr"</b> of integers and an element <b>"key"</b>. We have to search if <b>"key"</b> exists
-            in <b>"arr"</b> or not using binary search(Assuming array indexing starts from 0)</p>
+        <p>Given a sorted array <b>"arr"</b> of integers of size <b>N</b> and an element <b>"key"</b>. We have to search if <b>"key"</b> exists
+            in <b>"arr"</b> or not using binary search(Assuming array indexing starts from 0).</p>
 
         <h3>Pseuodocode:</h3>
-        <code>
-            <p>Binary Search ( Array arr, Element key)</p>
-            <p>Step 1: Let start = 0 and end = n-1.
-            <p>Step 2: Compute mid as the average of start and end, rounded down (so that it is an integer).</p>
-            <p>Step 3: If arr[mid] equals key, then stop. You found it! Return mid.</p>
-            <p>Step 4: If the mid was too low, that is, arr[mid] < key, then set start = mid + 1.</p>
-            <p>Step 5: Otherwise, the mid was too high. Set end = mid - 1.</p>
-            <p>Step 6: Go back to step 2.</p>
-        </code>
+        <pre>
+            <span class="function_def">Binary Search (Array arr, Element key, Size N)</span>
+            
+                Step 1: Let start = 0 and end = N-1.
+                Step 2: Compute mid as the average of start and end, rounded down (so that it is an integer).
+                Step 3: If arr[mid] equals key, then stop. You found it! Return mid.
+                Step 4: If the mid was too low, that is, arr[mid] &lt; key, then set start = mid + 1.
+                Step 5: Otherwise, the mid was too high. Set end = mid - 1.
+                Step 6: If start &gt; end, return key not found.
+                Step 7: Go back to step 2
+        </pre>
 
         <h3>Complexity Analysis:</h3>
         <h4>Time Complexity:</h4>
-        <p>Best Case: Best case is when the element is at the middle index of the array. It takes only one comparison to find the key element. So the best case complexity is O(1).</p>
-        <p>Worst Case: In the worst case, the key might be present at the last index i.e., opposite to the end from
-            which the search has started in the array. So the worst-case complexity is O(N) where N is the size of the
-            array.</p>
-        <p>Average Case: O(N)</p>
+        <p><b>Best Case:</b> Best case is when the element is at the middle index of the array. It takes only one comparison to find the key element. So the best case complexity is <b>O(1)</b>.</p>
+        <p><b>Worst Case:</b> The worst-case scenario of Binary Search occurs when the target element is the smallest element or the largest element of the sorted array.
+            In each iteration, the search gets reduced to half of the array.
+            So for an array of size N, there are atmost logN iterations.
+            Therefore, the Worst Case Time Complexity of Binary Search is <b>O(logN)</b>.</p>
+        <p><b>Average Case:</b> The average case arises when the target element is present in some location other than the central index or extremities. The time complexity depends on the number of comparisons to reach the desired element.
+            Therefore, the overall Average Case Time Complexity of Binary Search is <b>O(logN)</b>.</p>
         <h4>Space Complexity: </h4>
-        <p>O(1) as except for the variable to iterate through the array, no other variable is used. </p>
+        <p><b>O(1)</b> as no extra space is used</p>
         <button onclick="showHideProblem()" class="close_btn">Close</button>
     </div>
     <div class="box">
@@ -79,7 +83,8 @@
     <div class="cont">
         <div>
             <div class="x">
-                <div class="input"><label id="key_label">key : </label><input type="number" min="-10000" max="15000"
+                <div class="input"><label id="key_label">key : </label><input type="number" maxlength="7"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         id="key" placeholder="Enter key" value="0">
                 </div>
                 <!-- <div class="input">
@@ -106,10 +111,10 @@
             <h3>How you want the array to be?</h3>
             <div class="x">
                 <button class="arrgen_btn button-6" onclick="generate_sorted_arr('binarysearch')">  Random Sorted</button>
-                <button class="arrgen_btn button-6" onclick="updateVal()">Enter manually</button>
+                <button class="arrgen_btn button-6" onclick="updateVal('binarysearch')">Enter manually</button>
             </div>
             <div class="x">
-                <button id="visual" class="button-6" onclick="start_binarysearch()">VISUALISE</button>
+                <button id="visual" class="button-6" onclick="start_binarysearch()">VISUALIZE</button>
             </div>
         </div>
         <div id="logs">
