@@ -13,6 +13,7 @@ var key;
 var n = 6;
 var arr = [];
 var info = [];
+var timeoutlist = [];
 
 make_array(true);
 
@@ -104,18 +105,35 @@ function unlockInput() {
 function bubble_sort() {
     lock = true;
     lockInput();
+    if (n == 1) {
+        {
+            arr[0].classList.add('final');
+            // document.getElementById('sorted').innerHTML = "SORTED";
+            arr[0].setAttribute("style", "border-top:4px solid brown;border-bottom:4px solid brown;border-left:4px solid brown;");
+        }
+        arrgen = false;
+        lock = false;
+        unlockInput();
+        return;
+    }
     speed = parseFloat(document.getElementById("speed").value) / 2;
     timeout = 200;
     console.log(speed);
     document.getElementById('sorted').innerHTML = "SORTING....";
+    swapped = true;
     for (let i = 0; i < n - 1; i++) {
+        //  if(swapped==false)
+        //  break;
 
         console.log("swap");
         for (let j = 0; j < n - 1 - i; j++) {
             if (lock === false)
                 return;
-            setTimeout(() => {
 
+
+            x = setTimeout(() => {
+                if (j == 0)
+                    swapped = false;
                 if (j > 0) {
                     arr[j - 1].classList.remove('exchange');
                     arr[j].classList.remove('exchange');
@@ -135,7 +153,7 @@ function bubble_sort() {
                 arr[j + 1].classList.add('exchange');
                 if (parseInt(arr[j].innerHTML) > parseInt(arr[j + 1].innerHTML)) {
                     console.log("swap");
-
+                    swapped = true;
                     // let val1 = arr[j].innerHTML;
                     // let val2 = arr[j + 1].innerHTML;
 
@@ -177,7 +195,23 @@ function bubble_sort() {
 
                 }
                 if (j == n - i - 2) {
+
+
                     setTimeout(() => {
+                        if (swapped == false) {
+                            for (let i = 0; i < timeoutlist.length; i++)
+                                clearTimeout(timeoutlist[i]);
+                            for (let i = 0; i < n; i++) {
+                                arr[i].classList.add('final');
+                                // document.getElementById('sorted').innerHTML = "SORTED";
+                                arr[i].setAttribute("style", "border-top:4px solid brown;border-bottom:4px solid brown;border-left:4px solid brown;");
+                            }
+                            arrgen = false;
+                            lock = false;
+                            unlockInput();
+
+                        }
+
                         arr[j].classList.remove('exchange');
                         arr[j + 1].classList.remove('exchange');
                         arr[n - i - 1].classList.add('final');
@@ -200,6 +234,7 @@ function bubble_sort() {
                 }
 
             }, (timeout - 400 * speed))
+            timeoutlist.push(x);
             timeout += (2000 - 800 * speed);
         }
     }
@@ -297,49 +332,76 @@ function linearSearch() {
 function validateArray(string) {
     var l = string.length;
     if (l == 0)
-        return false;
+    {alert("cannot be empty")
+        return false;}
     if (string[0] == ',')
-        return false;
+    {alert("invalid")
+        return false;}
     if (string[l - 1] == ',' || string[l - 1] == '-')
-        return false;
+    {alert("invalid");
+        return false;}
     sample = [];
     let temp = "";
     for (let i = 0; i < l; i++) {
         if (!(string[i] == ',' || string[i] == '-' || (string[i] >= '0' && string[i] <= '9')))
-            return false;
+        {alert("invalid")
+            return false;}
         if (string[i] == ',' && string[i + 1] == ',')
-            return false;
+        {alert("invalid")
+            return false;}
         if (string[i] == '-' && (string[i + 1] == ',' || string[i + 1] == '-'))
-            return false;
+        {alert("invalid")
+            return false;}
 
         if (i > 0 && string[i] == '-' && string[i - 1] != ',')
-            return false;
+        {alert("invalid")
+            return false;}
         if (string[i] == ',') {
+            if (parseInt(temp) > 1000 || parseInt(temp) < -1000) {
+                alert("Element values must be between -1000 and 1000 (both inclusive)")
+                return false;
+            }
             sample.push(parseInt(temp));
             temp = "";
         }
         else
             temp += string[i];
-        if (temp.length > 5)
-            return false;
+        if (temp.length > 5) {
+            alert("Element values must be between -1000 and 1000 (both inclusive)")
 
+            return false;
+        }
+
+    }
+    if (parseInt(temp) > 1000 || parseInt(temp) < -1000) {
+        alert("Element values must be between -1000 and 1000 (both inclusive)")
+        return false;
     }
     sample.push(parseInt(temp));
     console.log(sample);
     return sample;
 
 }
+function checkSorted(x) {
+    prev = x[0];
+    for (i = 1; i < x.length; i++) {
+        if (x[i] < prev)
+            return false;
+        prev = x[i];
+    }
+    return true;
 
-function updateVal() {
+}
+function updateVal(algo) {
     if (lock == true)
         return;
-    let manArray = prompt("Please enter the array elements seperated by comma");
+    let manArray = prompt("Please enter the array elements seperated by comma(no white spaces allowed). Elements must be integers and their values must be between -1000 and 1000.");
     if (manArray == null)
         return;
 
     var x = validateArray(manArray);
     if (x == false) {
-        alert("invalid")
+        
         return;
     }
 
@@ -350,6 +412,12 @@ function updateVal() {
         alert("size can't exceed 15")
         return;
     }
+    if (algo == 'binarysearch' && checkSorted(x) == false) {
+        alert("array elements must be sorted in non-decresing order");
+        return;
+
+    }
+
     document.getElementById("logvals").innerHTML = "";
     arrgen = true;
     n = x.length;
