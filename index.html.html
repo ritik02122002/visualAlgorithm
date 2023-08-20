@@ -90,7 +90,8 @@
 
     .dropdown-content button:hover {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-color: rgb(251, 210, 253);
+      /* background-color: rgb(251, 210, 253); */
+      /* background-color: rgba(215, 215, 215,0.5); */
     }
 
     a,
@@ -156,33 +157,34 @@ display: block;
   <h1>
   VISUAL ALGO
   </h1>
-  <h2>UNDERSTAND ALGORITHMS THROUGH VISUALISATION</h2>
+  <h2>UNDERSTAND ALGORITHMS THROUGH VISUALIZATION</h2>
   <div class="container">
 
 
+   
     <div class="dropdown">
-      <button class="item">SORTING</button>
+      <button class="item">RECURSIVE</button>
       <div class="dropdown-content">
-        <button class="item2"><a href="bubblesort.html">BUBBLE SORT</a></button><br />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="item">SEARCHING</button>
-      <div class="dropdown-content">
-        <button class="item2"><a href="linearsearch.html">LINEAR SEARCH</a></button>
-        <button class="item2"><a href="binarysearch.html">BINARY SEARCH</a></button>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="item"><a href="">RECURSIVE</a></button>
-      <div class="dropdown-content">
-        <button class="item2"><a href="toh_html.html">TOWER OF HANOI</a></button>
+        <button class="item2" onclick="window.location.href='toh_html.html'">TOWER OF HANOI</a></button>
       </div>
     </div>
     <div class="dropdown">
       <button class="item">DYNAMIC PROGRAMMING</button>
       <div class="dropdown-content">
-        <button class="item2"><a href="max square.html">MAX SIZE SQUARE OF ALL 1's IN A GRID OF 0's AND 1's</a></button>
+        <button class="item2" onclick="window.location.href='max square.html'">MAXIMAL SQUARE OF ALL 1's IN A BINARY MATRIX</button>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="item">SORTING</button>
+      <div class="dropdown-content">
+        <button class="item2" onclick="window.location.href='bubblesort.html'">BUBBLE SORT</button>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="item">SEARCHING</button>
+      <div class="dropdown-content">
+        <button class="item2" onclick="window.location.href='linearsearch.html'">LINEAR SEARCH</button>
+        <button class="item2" onclick="window.location.href='binarysearch.html'">BINARY SEARCH</button>
       </div>
     </div>
 
