@@ -92,7 +92,7 @@ function visualize_binarySearch() {
                 if(end>=0 && end<n)
                 info[end].innerHTML = "end";
                 setTimeout(() => {
-                    window.alert('Element not found!');
+                    window.alert('key not found!');
                 }, 1000)
                 unlockInput();
                 lock = false;
