@@ -26,31 +26,34 @@
             data set</p>
 
         <h3>Problem Statement:</h3>
-        <p>Given an array <b>"arr"</b> of integers and an element <b>"key"</b>. We have to search if <b>"key"</b> exists
-            in <b>"arr"</b> or not(Assuming array indexing starts from 0)</p>
+        <p>Given an array <b>"arr"</b> of integers of size <b>N</b> and an element <b>"key"</b>. We have to search if <b>"key"</b> exists
+            in <b>"arr"</b> or not (Assuming array indexing starts from 0).</p>
 
         <h3>Pseuodocode:</h3>
-        <code>
-            <p>Linear Search ( Array arr, Element key)</p>
-<p>Step 1: Set i to 1</p>
-<p>Step 2: if i > n then go to step 7</p>
-<p>Step 3: if arr[i] = key then go to step 6</p>
-<p>Step 4: Set i to i + 1</p>
-<p>Step 5: Go to Step 2</p>
-<p>Step 6: Print key Found at index i and go to step 8</p>
-<p>Step 7: Print key not found</p>
-<p>Step 8: Exit</p>
-        </code>
+        
+            <pre>
+                <span class="function_def"> Linear Search (Array arr, Element key, Size N)</span>
+
+                    Step 1: Let i = 0
+                    Step 2: if i = N then go to step 7
+                    Step 3: if arr[i] = key then go to step 6
+                    Step 4: Set i to i + 1
+                    Step 5: Go to Step 2
+                    Step 6: Return key Found at index i and go to step 8
+                    Step 7: Return key not found
+                    Step 8: Exit
+            </pre>
 
         <h3>Complexity Analysis:</h3>
         <h4>Time Complexity:</h4>
-        <p>Best Case: In the best case, the key might be present at the index 0. So the best case complexity is O(1)</p>
-        <p>Worst Case: In the worst case, the key might be present at the last index i.e., opposite to the end from
-            which the search has started in the array. So the worst-case complexity is O(N) where N is the size of the
+        <p><b>Best Case:</b> In the best case, the key might be present at the index 0. So the best case complexity is <b>O(1)</b></p>
+        <p><b>Worst Case:</b> In the worst case, the key might be present at the last index i.e., opposite to the end from
+            which the search has started in the array. So the worst-case complexity is <b>O(N)</b> where N is the size of the
             array.</p>
-        <p>Average Case: O(N)</p>
+        <p><b>Average Case:</b> In the average case, the key might be present at the middle index of the array.So the average-case complexity is <b>O(N)</b> where N is the size of the
+            array.</p>
         <h4>Space Complexity: </h4>
-        <p>O(1) as except for the variable to iterate through the array, no other variable is used. </p>
+        <p><b>O(1)</b> as except for the variable to iterate through the array, no other variable is used. </p>
         <button onclick="showHideProblem()" class="close_btn">Close</button>
     </div>
 
@@ -70,7 +73,8 @@
 
         <div>
             <div class="x">
-                <div class="input"><label id="key_label">key : </label><input type="number" min="-10000" max="15000"
+                <div class="input"><label id="key_label">key : </label><input type="number" maxlength="7"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         id="key" placeholder="Enter key" value="0">
                 </div>
                 <!-- <div class="input">
@@ -97,12 +101,12 @@
             </div>
             <h3>How you want the array to be?</h3>
             <div class="x">
-                <button class="arrgen_btn button-6" onclick="updateVal()">Enter manually</button>
+                <button class="arrgen_btn button-6" onclick="updateVal('linearsearch')">Enter manually</button>
                 <button class="arrgen_btn button-6" onclick="generate_random_arr('linearsearch')">Random</button>
                 <!-- <button class="arrgen_btn button-6" onclick="generate_sorted_arr('linearsearch')">Sorted</button> -->
             </div>
             <div class="x">
-                <button id="visual" class="button-6" onclick="start_linearsearch()">START VISUALISING</button>
+                <button id="visual" class="button-6" onclick="start_linearsearch()">VISUALIZE</button>
             </div>
         </div>
 
