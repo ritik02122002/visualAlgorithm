@@ -1,18 +1,29 @@
 <html>
 
 <head>
-    <title>MAX SIZE SQUARE OF ALL 1's IN A GRID OF 0's AND 1's</title>
+    <title>MAXIMAL SQUARE OF ALL 1's IN A BINARY MATRIX</title>
     <link rel="stylesheet" href="visualizer_css.css">
     <style>
+        #logs {
+            width: 40%;
+
+
+
+        }
+        #visualize{
+            font-size: 30px;
+        }
+
         #container {
             display: grid;
             width: fit-content;
             column-gap: 10px;
             row-gap: 10px;
-            margin-left: 45px;
-            margin-right: 45px;
-            margin-top: 40px;
-            margin-bottom: 30px;
+            /* margin-left: 45px;
+            margin-right: 45px; */
+            margin: auto;
+            /* margin-top: 40px;
+            margin-bottom: 30px; */
             outline: 10px double rgb(246, 103, 179);
             outline-offset: 5px;
             height: fit-content;
@@ -48,11 +59,12 @@
 
         }
 
-        div {
+        #content div {
             text-align: center;
             line-height: 30px;
             ;
         }
+
 
         #result {
             font-size: 30px;
@@ -69,19 +81,21 @@
         }
 
         #content {
-            display: flex;
+            /* display: flex;
             flex-direction: row;
-            justify-content: flex-start;
+            justify-content: flex-start; */
             /* flex-direction: column; */
+            margin-bottom: 100px;
         }
 
+        /* 
         .x {
             flex-direction: column;
             margin-left: 15px;
             margin-right: 30px;
             margin-top: 30px;
 
-        }
+        } */
 
         #calculation,
         #actcalculation {
@@ -101,39 +115,104 @@
 </head>
 
 <body>
-    <div id="content">
-        <div class="x">
-            <div class="input"><input type="number" min="1" max="10" id="row" placeholder="Rows" onchange="updateRow()">
-            </div>
-            <div class="input"><input type="number" min="1" max="10" id="column" placeholder="Columns"
-                    onchange="updateCol()"></div>
+    <h1 class="algo_name">MAXIMAL SQUARE OF ALL 1's IN A BINARY MATRIX</h1>
+    <button class="prblm_st_btn button-6" onclick="showHideProblem()">Description</button>
+    <div class="prblm_st">
+        <h3>Problem Statement:</h3>
+        <p>Given a binary matrix <b>"arr"</b> of 0's and 1's with <b>"rows"</b> rows and <b>"cols"</b> columns. Find out the maximal
+            square sub-matrix with all 1's and return its side (Assuming row and column indexing starts from 0).</p>
 
-            <div>
-                <div class="range">1's to 0's</div><input type="range" min="0" max="50" id="onezero" onchange="f()">
-            </div>
-        </div>
+        <h3>Pseuodocode:</h3>
+
+        <pre>
+            <span class="function_def">Maximal Square Of All 1's In A Binary Matrix (Matrix arr, Row rows, Columns cols)</span> 
+
+                Initialize the answer as 0
+                Create a matrix "dp" of rows x cols size
+
+                for i = 0 to rows-1 increment by 1 do
+
+                    for j = 0 to cols-1 increment by 1 do
+
+                        if i &gt; 0 and j &gt; 0 and arr[i][j] != 0 then
+                            dp[i][j] = minimum(dp[i][j-1],dp[i-1][j],dp[i-1][j-1])+1
+
+                        else
+                            dp[i][j]=arr[i][j]
+
+                        ans = maximum(dp[i][j],ans)
+
+                return ans
+        </pre>
+
+
+        <h3>Complexity Analysis:</h3>
+        <h4>Time Complexity:</h4>
+        <p>The outer loop will run O(rows) time and the inner loop will run O(cols) time. Therefore, the overall time complexity is <b>O(rows*cols)</b>, where rows and cols are the total number of rows and the columns in a matrix. </p>
+        <h4>Space Complexity: </h4>
+        <p><b>O(rows*cols)</b>, as we initialized the additional "dp" matrix with the same size of the given matrix.</p>
+        <button onclick="showHideProblem()" class="close_btn">Close</button>
+    </div>
+    <div id="content">
+
         <div id="container">
 
         </div>
-        <div class="box">
-            <div id="calculation">
+
+    </div>
+    <div class="cont">
+        <div>
+            <div class="button-6" style="white-space: nowrap;">Max Square Side : <span id="rescount">0</span></div>
+            <div class="x">
+                <div class="input"><label id="row_label">Rows : </label><input type="number" min="1" max="10" id="row" placeholder="Rows" value="6"
+                        onchange="updateRow()">
+                </div>
+                <div class="input"><label id="col_label">Columns : </label><input type="number" min="1" max="10" id="column" placeholder="Columns"
+                        onchange="updateCol()" value="10"></div>
+            </div>
+            <div class="x">
+
+                <div>
+                    <div class="range">1's to 0's</div><input type="range" min="0" max="20" id="onezero"
+                        onchange="f2()">
+                </div>
+
+                <button onclick="generate_grid()" class="arrgen_btn button-6">Generate Matrix</button>
 
             </div>
-            <div id="actcalculation">
+            <div>
+                <button onclick="start_largestSquare()" class="button-6" id="visualize">VISUALIZE</button>
             </div>
         </div>
+
+        <div id="logs">
+            <h3>Logs:</h3>
+            <div id="logvals">
+
+
+                <!-- <div class="box">
+                    <div id="calculation">
+
+                    </div>
+                    <div id="actcalculation">
+                    </div>
+                </div> -->
+            </div>
+
+
+        </div>
+
+
+
+
+
+
     </div>
 </body>
-<div id="result">Max Square Size : <span id="rescount">0</span></div>
-
-<button onclick="generate_grid()">GENERATE GRID</button>
-<button onclick="start_largestSquare()">VISUALISE</button>
-
-
 <script>
 
 
-    var n = 7, m = 7;
+    var n = 6, m = 10;
     var arr = [];
     var prev = [-1, -1, -1];
     var timeout = 1000;
@@ -141,10 +220,11 @@
     var ans = 0;
     var lock = false;
     var beginning = true;
-    var gridgen = false;
+    var gridgen = true;
 
     function initialize() {
         arr = [];
+        document.getElementById("logvals").innerHTML = "";
         document.getElementById("container").innerHTML = "";
         prev = [-1, -1, -1];
         dp = [];
@@ -166,15 +246,15 @@
             for (let j = 0; j < m; j++) {
                 let e = document.createElement("div");
                 let z = parseFloat(document.getElementById("onezero").value);
-                z = z / 50;
-                let random = Math.floor(Math.random() * (2 - z) + (z));
+                z = z / 20;
+                let random = Math.floor(Math.random() + z);
                 e.innerHTML = random;
                 document.getElementById("container").append(e);
                 arr[i].push(e);
             }
         printArray();
         initializeDpArr();
-
+        gridgen = true;
     }
 
     function start_largestSquare() {
@@ -193,6 +273,8 @@
         }
         else {
             window.alert("Please enter row value between 1 and 10");
+            document.getElementById("row").value=6;
+            n=6;
             return false;
         }
     }
@@ -205,6 +287,8 @@
         }
         else {
             window.alert("Please enter column value between 1 and 10");
+            document.getElementById("column").value=10;
+            m=10;
             return false;
         }
     }
@@ -236,13 +320,15 @@
         if (lock == false) {
             gridgen = true;
             // updateRowCol();
+            document.getElementById("logvals").innerHTML = "";
             initialize();
+
         }
 
         // }
     }
 
-    function f() {
+    function f2() {
         initialize();
 
     }
@@ -282,6 +368,7 @@
 
     function largestSquare() {
         lock = true;
+        timeout = 1000;
         lockInput();
         for (let i = 0; i < n; i++)
             for (let j = 0; j < m; j++) {
@@ -291,9 +378,9 @@
 
                         arr[i][j].innerHTML = dp[i][j];
 
-                        document.getElementById("calculation").innerHTML = "";
-                        document.getElementById("actcalculation").innerHTML = "";
-                        document.getElementsByClassName("box")[0].setAttribute("style", "visibility:hidden");
+                        // document.getElementById("calculation").innerHTML = "";
+                        // document.getElementById("actcalculation").innerHTML = "";
+                        // document.getElementsByClassName("box")[0].setAttribute("style", "visibility:hidden");
                         document.getElementById("rescount").innerHTML = ans;
                         setTimeout(() => {
                             upper(i, j, dp[i][j]);
@@ -305,37 +392,54 @@
                     }, 3000)
                     arr[i][j].classList.add("on");
                     if (parseInt(arr[i][j].innerHTML) == 1 && i > 0 && j > 0) {
-                        document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = 1 + " + "minimum(";
-                        document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = 1 + " + "minimum(";
-                        document.getElementsByClassName("box")[0].setAttribute("style", "visibility:visible");
-                        console.log(document.getElementById("calculation").innerHTML);
+
+
+
+                        // document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = 1 + " + "minimum(";
+                        // document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = 1 + " + "minimum(";
+                        // document.getElementsByClassName("box")[0].setAttribute("style", "visibility:visible");
+                        // console.log(document.getElementById("calculation").innerHTML);
+
                         setTimeout(() => {
                             arr[i][j - 1].classList.add("min");
-                            document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] ,";
-                            document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(" + dp[i][(parseInt(j) - 1)] + " ,";
-                            console.log(document.getElementById("calculation").innerHTML);
+                            // document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] ,";
+                            // document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(" + dp[i][(parseInt(j) - 1)] + " ,";
+                            // console.log(document.getElementById("calculation").innerHTML);
                         }, 0)
                         setTimeout(() => {
-                            document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ,";
-                            document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(" + dp[i][(parseInt(j) - 1)] + " ," + dp[(parseInt(i) - 1)][(parseInt(j) - 1)] + " ,";
+                            // document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ,";
+                            // document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(" + dp[i][(parseInt(j) - 1)] + " ," + dp[(parseInt(i) - 1)][(parseInt(j) - 1)] + " ,";
                             arr[i][j - 1].classList.remove("min");
                             arr[i - 1][j - 1].classList.add("min");
-                            console.log(document.getElementById("calculation").innerHTML);
+                            // console.log(document.getElementById("calculation").innerHTML);
                         }, 750)
                         setTimeout(() => {
-                            document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ," + " dp[" + (parseInt(i) - 1) + "][" + j + "])";
-                            document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(" + dp[i][(parseInt(j) - 1)] + " ," + dp[(parseInt(i) - 1)][(parseInt(j) - 1)] + " ," + dp[(parseInt(i) - 1)][j] + ")";
+                            // document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ," + " dp[" + (parseInt(i) - 1) + "][" + j + "])";
+                            // document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(" + dp[i][(parseInt(j) - 1)] + " ," + dp[(parseInt(i) - 1)][(parseInt(j) - 1)] + " ," + dp[(parseInt(i) - 1)][j] + ")";
                             arr[i - 1][j - 1].classList.remove("min");
                             arr[i - 1][j].classList.add("min");
-                            console.log(document.getElementById("calculation").innerHTML);
+                            // console.log(document.getElementById("calculation").innerHTML);
                         }, 1500)
                         setTimeout(() => {
                             arr[i - 1][j].classList.remove("min");
-                            let mintemp = Math.min(dp[i - 1][j], dp[i - 1][j - 1], dp[i][j - 1]);
-                            document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ," + " dp[" + (parseInt(i) - 1) + "][" + j + "]) + 1";
-                            document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + mintemp + " + 1 = " + (parseInt(mintemp) + 1);
+                            //let mintemp = Math.min(dp[i - 1][j], dp[i - 1][j - 1], dp[i][j - 1]);
+                            // document.getElementById("calculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ," + " dp[" + (parseInt(i) - 1) + "][" + j + "]) + 1";
+                            // document.getElementById("actcalculation").innerHTML = "dp[" + i + "]" + "[" + j + "]" + " = " + mintemp + " + 1 = " + (parseInt(mintemp) + 1);
 
-                            console.log(document.getElementById("calculation").innerHTML);
+                            // console.log(document.getElementById("calculation").innerHTML);
+
+
+                            var newe = document.createElement("div");
+                            newe.setAttribute("class", "logElement");
+                            var ee = document.getElementById("logvals");
+                            let mintemp = Math.min(dp[i - 1][j], dp[i - 1][j - 1], dp[i][j - 1]);
+                            var temporary = "dp[" + i + "]" + "[" + j + "]" + " = " + "minimum(dp[" + i + "][" + (parseInt(j) - 1) + "] , " + "dp[" + (parseInt(i) - 1) + "][" + (parseInt(j) - 1) + "] ," + " dp[" + (parseInt(i) - 1) + "][" + j + "]) + 1<br>";
+                            temporary += "dp[" + i + "]" + "[" + j + "]" + " = " + mintemp + " + 1 = " + (parseInt(mintemp) + 1);
+
+                            newe.innerHTML = temporary;
+                            ee.appendChild(newe);
+                            f(newe);
+
                             if (i == n - 1 && j == m - 1) {
                                 unlockInput();
                                 lock = false;
@@ -349,6 +453,18 @@
                     }
                     else {
                         dp[i][j] = parseInt(arr[i][j].innerHTML);
+                        setTimeout(() => {
+
+                            var newe = document.createElement("div");
+                            newe.setAttribute("class", "logElement");
+                            var ee = document.getElementById("logvals");
+                            var temporary = "dp[" + i + "]" + "[" + j + "]" + " = " + "arr[" + i + "]" + "[" + j + "]<br>";
+                            temporary += "dp[" + i + "]" + "[" + j + "]" + " = " + arr[i][j].innerHTML;
+
+                            newe.innerHTML = temporary;
+                            ee.appendChild(newe);
+                            f(newe);
+                        }, 2250);
                         if (i == n - 1 && j == m - 1) {
                             unlockInput();
                             lock = false;
@@ -408,7 +524,28 @@
         return x < n && x >= 0 && y < m && y >= 0;
     }
 
+    function f(element) {
+        // const element = document.getElementById("logs");
+        element.scrollIntoView(true);
+    }
+    function showHideProblem() {
 
+
+        var x = document.getElementsByClassName("prblm_st")[0].style.display;
+        if (x == "block") {
+            document.getElementsByClassName("prblm_st")[0].style.display = "none";
+
+        }
+        else {
+
+            // document.getElementsByTagName("body")[0].style.filter="blur(2px)";
+            //     document.querySelectorAll("body :not(.prblm_st)")
+            //   .forEach(element => element.style.filter = "blur(2px)");
+            document.getElementsByClassName("prblm_st")[0].style.display = "block";
+        }
+        console.log(x);
+
+    }
 </script>
 </body>
 
