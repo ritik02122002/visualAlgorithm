@@ -24,6 +24,7 @@
 
         #sorted {
             margin-right: 50px;
+            display:none;
         }
 
         #visual {
@@ -40,30 +41,35 @@
         <p> Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order.</p>
 
         <h3>Problem Statement:</h3>
-        <p>Given an array <b>"arr"</b> of integers. We have to sort the array <b>"arr"</b> in non-descreasing order using Bubble Sort(Assuming array indexing starts from 0)</p>
+        <p>Given an array <b>"arr"</b> of integers of size <b>N</b>. We have to sort the array <b>"arr"</b> in non-descreasing order using Bubble Sort (Assuming array indexing starts from 0).</p>
 
         <h3>Pseuodocode:</h3>
-        <code>
-           <p> BubbleSort(Array arr, Size n)</p>
-            <p>Begin</p>
-              <p>for i = 0 to n-2 increment by 1 do  // where, i is for the pass</p>
-                <p>for j = 0 to n – 2 – i increment by 1 do  // this is for comparison</p>
-                  <p>if arr[j] > arr[j+1] then</p>  
-                    <p>swap(arr[j],arr[j+1])</p>
-                  <p>endif</p>
-                <p>endfor</p>
-              <p>endfor</p>
-            <p>End</p>
-        </code>
+        <pre>
+        <span class="function_def">BubbleSort(Array arr, Size N)</span>
+
+            for i = 0 to N-2 increment by 1 do
+                swapped=false
+
+                for j = 0 to N – 2 – i increment by 1 do
+
+                    if arr[j] > arr[j+1] then
+                        swap(arr[j],arr[j+1])
+                        swapped=true
+
+                if(not swapped) then
+                    break
+
+        </pre>
 
         <h3>Complexity Analysis:</h3>
         <h4>Time Complexity:</h4>
-        <p>Best Case:  The best case occurs when the array is already sorted. So the number of comparisons required is n-1 and the number of swaps required = 0. Hence the best case complexity is O(n).</p>
-        <p>Average Case: It occurs when the array elements are in jumbled order that is not properly ascending and not properly descending. The average case time complexity of bubble sort is O(n*n).</p>
-        <p>Worst Case: The worst-case condition for bubble sort occurs when elements of the array are arranged in decreasing order.
-            In the worst case, the total number of iterations or passes required to sort a given array is (n-1). where ‘n’ is the number of elements present in the array.Hence the worst case complexity is O(n*n).</p>
+        <p><b>Best Case:</b>  The best case occurs when the array is already sorted. So the number of comparisons required is N-1 and the number of swaps required = 0. Hence the best case complexity is <b>O(N)</b>.</p>
+        <p><b>Average Case:</b> It occurs when the array elements are in jumbled order that is not properly ascending and not properly descending. The average case time complexity of bubble sort is <b>O(N*N)</b>.</p>
+        <p><b>Worst Case:</b> The worst-case condition for bubble sort occurs when elements of the array are arranged in decreasing order.
+            In the worst-case scenario, the outer loop runs O(N) times.
+As a result, the worst-case time complexity of bubble sort is <b>O(N*N)</b>.</p>
         <h4>Space Complexity: </h4>
-        <p>O(1) as no additional space is used.</p>
+        <p><b>O(1)</b> as it requires only a fixed amount of extra space for the variables.</p>
         <button onclick="showHideProblem()" class="close_btn">Close</button>
     </div>
     <div class="box">
@@ -73,7 +79,7 @@
 
     </div>
     <div id="additionalinfo">
-        <div id="swaps" class="button-6">SWAPS : <span id="swapcount">0</span></div>
+        <div id="swaps" class="button-6" style="white-space: nowrap;">SWAPS : <span id="swapcount">0</span></div>
         <div id="sorted" class="button-6">UNSORTED</div>
     </div>
     <hr color="purple" style="margin:30px 10px;">
@@ -107,12 +113,12 @@
             </div>
             <h3>How you want the array to be?</h3>
             <div class="x">
-                <button class="arrgen_btn button-6" onclick="updateVal()">Enter manually</button>
+                <button class="arrgen_btn button-6" onclick="updateVal('bubblesort')">Enter manually</button>
                 <button class="arrgen_btn button-6" onclick="generate_random_arr('bubblesort')">Random</button>
                 <button class="arrgen_btn button-6" onclick="generate_sorted_arr('bubblesort')">Random Sorted</button>
             </div>
             <div class="x">
-                <button class="button-6" onclick="start_bubblesort()" id="visual">VISUALISE</button>
+                <button class="button-6" onclick="start_bubblesort()" id="visual">VISUALIZE</button>
             </div>
         </div>
         <div id="logs">
