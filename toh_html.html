@@ -138,9 +138,9 @@
             height: 70px;
         }
 
-        #speed{
+        /* #speed{
             display: none;
-        }
+        } */
         #moves{
             white-space: nowrap;
         }
@@ -217,8 +217,8 @@
                     </select>
                 </div>
                 <div class="input">
-                    <!-- <h3>Speed:</h3> -->
-                    <input type="range" min="1" max="4" id="speed" onchange="Storespeed()">
+                    <h3>Speed:</h3>
+                    <input type="range" min="1" max="10" id="speed" onchange="Storespeed()" value="2">
                 </div>
             </div>
             <div class="x">
@@ -240,7 +240,7 @@
 
     <script>
 
-        var n = 3;
+        var n = 4;
         var movecount;
         const colorarr = ["red", "green", "brown", "purple", "grey", "blue", "orange"];// stores the colors of the respective disks
         var from = []
@@ -251,7 +251,7 @@
         var timeoutlist = []
 
 
-        initialPos(3);
+        initialPos(4);
         function initialPos() {
             if (running == true || document.getElementById("movecount") == null)
                 return;
@@ -342,7 +342,7 @@
             to = []
             timeoutlist = []
             //timeout = 500 - 100 * speed;
-            timeout=1000;
+            timeout=1000/speed;
             let x, y;
             towerOfHanoi(n, "tower1", "tower3", "tower2");
 
@@ -362,7 +362,7 @@
 
                             // document.getElementById("moves").innerHTML = "Successfully moved all the blocks from Tower 1 to Tower 3 in " + movecount + " moves.";
                         }
-                    }, parseFloat(500))
+                    }, parseFloat(timeout/2))
                     timeoutlist.push(y);
 
                     var newe = document.createElement("div");
@@ -376,9 +376,9 @@
                     ee.appendChild(newe);
                     f(newe);
 
-                }, timeout)
+                }, timeout*i)
                 timeoutlist.push(x);
-                timeout += 1000;
+                // timeout += 1000;
                 // timeout+=parseInt(timeout)*2;
             }
 
